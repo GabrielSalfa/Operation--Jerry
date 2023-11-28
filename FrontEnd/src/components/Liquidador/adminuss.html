@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Administración de Liquidación</title>
+    </head>
+    <body>
+        <center><h1 id="title1">Liquidador: Ernesto Jorquera</h1></center>
+        <div id="cont">
+            <label for="selectus">Siniestro:</label>
+            <select id="selectus"> 
+                <option disabled selected>Seleccione el Siniestro</option>
+                <option value="E. Rigoberto 10/09">E. Rigoberto 10/09</option>
+                <option value="M. Fuenzalida 25/05">M. Fuenzalida 25/05</option>
+                <option value="P. Rodríguez 08/01">P. Rodríguez 08/01</option>
+                <option value="U. Saavedra 01/02">U. Saavedra 01/02</option>
+                <option value="J. José 30/12">J. José 30/12</option>
+            </select>
+            <button id="accsselect">
+                Seleccionar Siniestro
+            </button>
+        </div>
+        <div id="sinadm">
+            <div>
+                <h2>Gestión de Siniestro
+                    <img src="unab.png" id="unab">
+                </h2>
+                <br>
+                <br>
+            </div>
+            
+            <form>
+                <label for="agency">Agencia:</label>
+                <select id="selectagency"> 
+                    <option disabled selected>Escoja una Agencia</option>
+                    <option value="Reparaciones Rueda">Reparaciones Rueda</option>
+                    <option value="Autofix">Autofix</option>
+                    <option value="GasoBing">GasoBing</option>
+                </select>
+                <br>
+                <br>
+                <label for="tow">Grúa:</label>
+                <input id = "tow" type="text" name="tow">
+                <label for="cworkshop">Taller:</label>
+                <input id = "cworkshop" type="text" name="cworkshop" >
+                <br>
+                <br>
+                <label for="repairt">Tipo de Reparación:</label>
+                <select id="repairt"> 
+                    <option disabled selected>Tipo de Reparación</option>
+                    <option value="Menor">Menor</option>
+                    <option value="Moderada">Moderada</option>
+                    <option value="Completa">Completa</option>
+                    </select>
+                    <label for="time">Grúa:</label>
+                    <input id = "time" type="text" name="time">
+                <br>
+                <br>
+                <center>
+                    <label for="desc">Descripción:</label>
+                    <input id = "desc" type="text" name="desc">
+                </center>
+                <br>
+                <br>
+                <label for="day">Día de Entrega:</label>
+                    <input id = "day" type="text" name="day">
+                <label for="cost">Monto Total:</label>
+                    <input id = "cost" type="text" name="cost">
+                <br>
+                <br>
+                <center>
+                    <button id="download">
+                        Descargar PDF
+                    </button>
+                </center>
+            </form>
+        </div>
+        <footer>
+            <img src="unab.png" id="unab">
+            <img src="Logo Siniestro.png" id="logo">
+            <h3>Administración de Siniestro v0.5</h3>
+        </footer>
+        <script src="scriptsadminuss.js"></script>
+    </body>
+</html>
