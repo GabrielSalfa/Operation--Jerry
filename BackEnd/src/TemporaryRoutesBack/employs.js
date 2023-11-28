@@ -9,6 +9,8 @@ router.post("/employs", (req, res) => {
     employ.save()
     .then((data) => res.json(data))
     .catch((error) => res.json({message: error}));
-})
+});
+
+
 module.exports = router;
 
