@@ -5,5 +5,5 @@ Content-Type: application/json
 {
     "username":"Bastian Melvin",
     "password":"AlfredoCalmatePofavo2",
-    "rol": "CallCenter"
+    "rol": "Call Center"
 }
