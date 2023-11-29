@@ -3,7 +3,6 @@ import './consultaAsistenciaGrua.css';
 import { mostrarContenido } from './consultaAsistenciaGruaBack';
 
 function ConsultaAsistenciaGrua() {
-    // Define showGlobalStats state
     const [showGlobalStats, setShowGlobalStats] = useState(false);
 
     return (

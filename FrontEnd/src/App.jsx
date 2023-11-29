@@ -4,6 +4,7 @@ import Inicio from './components/Inicio/Inicio';
 import Aute from './components/Autenticacion/Aute';
 import VAdmin from './components/VistaAdmin/VAdmin';
 import ConsultaAsistenciaGrua from "./components/ConsultaAsistenciaGrua/consultaAsistenciaGrua";
+import IngresoSin from "./components/IngresoSiniestro/IngresoSin";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/autenticacion" element={<Aute />} />
           <Route path="/Vistaadmin/*" element={<VAdmin />} />
           <Route path="/consultaAsistenciagrua" element={<ConsultaAsistenciaGrua/>} />
+          <Route path="/IngresoSiniestro" element={<IngresoSin/>}/>
         </Routes>
       </Router>
     </div>
