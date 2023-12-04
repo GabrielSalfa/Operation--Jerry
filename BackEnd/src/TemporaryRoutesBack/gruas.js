@@ -1,46 +1,45 @@
 const expres = require("express");
-const employs = require("../models/employs");
+const Grua = require("../models/gruas");
 
 const router = expres.Router();
 
-// Crear empleado
-router.post("/employs", (req, res) => {
-    const employ = employs(req.body);
-    employ.save()
+// Crear registro de grua
+router.post("/gruas", (req, res) => {
+    const gruas = Grua(req.body);
+    gruas.save()
         .then((data) => res.json(data))
         .catch((error) => res.json({message: error}));
 });
-// Obtener todos los empleados
-router.get("/employs", (req, res) => {
-    employs.find()
+// get all
+router.get("/gruas", (req, res) => {
+    Grua
+        .find()
         .then((data) => res.json(data))
         .catch((error) => res.json({message: error}));
 });
-// Obtener un empleado
-router.get("/employs/:id", (req, res) => {
+// get one
+router.get("/gruas/:id", (req, res) => {
     const { id } = req.params;
-    employs
+    Grua
         .findById(id)
         .then((data) => res.json(data))
         .catch((error) => res.json({message: error}));
 });
-// Actualizar un empleado
-router.put("/employs/:id", (req, res) => {
+// uptade one
+router.put("/gruas/:id", (req, res) => {
     const {id} = req.params;
-    const {username, password, rol} = req.body;
-    employs
-        .updateOne({_id: id},{$set:{username, password, rol}})
+    const {taller, grua, patente, nombre_chofer, direccion_referencia, punto_retiro, direccion} = req.body;
+    Grua
+        .updateOne({_id: id},{$set:{taller, grua, patente, nombre_chofer, direccion_referencia, punto_retiro, direccion}})
         .then((data) => res.json(data))
         .catch((error) => res.json({message: error}));
 });
-// Eliminar un empleado
-router.delete("/employs/:id", (req, res) => {
+// delete one
+router.delete("/gruas/:id", (req, res) => {
     const {id} = req.params;
-    employs
+    Grua
         .deleteOne({_id:id})
         .then((data) => res.json(data))
         .catch((error) => res.json({message: error}));
 });
-//Metodo para encriptar la contraseña 
-module.exports = router;
-
+module.exports = router
