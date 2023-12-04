@@ -7,31 +7,44 @@ const Aute = () => {
     const navigate = useNavigate();
 
     const handleSubmitAdministrador = (values) => {
-        alert(`Hemos capturado tus datos en el sistema. Bienvenido administrador, ${values.adminUsername} :D`);
-        navigate('/VistaAdmin/crear-usuario');
-    };
-
-    const handleSubmitUsuario = (values) => {
-        alert('Hemos capturado tus datos en el sistema. Bienvenido usuario :D');
+        fetch('http://localhost:9000/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: values.adminUsername,
+                password: values.adminPassword
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.token) {
+                alert(`Bienvenido administrador, ${values.adminUsername} :D`);
+                // Guardar token en el almacenamiento local o en el estado global
+                localStorage.setItem('token', data.token);
+                navigate('/VistaAdmin/crear-usuario');
+            } else {
+                alert('Inicio de sesión fallido.');
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     };
 
     return ( 
         <div className="BodyAute">
-            <header>
-                <h1 className="Encabezado">Ingreso Usuarios</h1>
-            </header>
-            <Formik initialValues={{ rut: '', poliza: '' }} onSubmit={handleSubmitUsuario}>
+            <Formik initialValues={{ Username: '', Password: '' }} onSubmit={handleSubmitAdministrador}>
                 {() => (
-                    <Form className="formularioAute">
-                        <p>Iniciar Sesión Usuarios</p>
+                    <Form className="formularioAute" autocomplete="off">
+                        <h1 className="Encabezado">Ingreso usuarios</h1>                      
                         <fieldset>
                             <div className="campos">
-                                <i className="fa-solid fa-user-large"></i>
-                                <Field className="casillas" type="number" name="rut" placeholder="Rut sin puntos ni guion" required />
+                                <Field className="casillas" type="text" name="username" placeholder="Nombre de Usuario" required />
                             </div>
                             <div className="campos">
-                                <i className="fa-solid fa-hashtag"></i>
-                                <Field className="casillas" type="text" name="poliza" placeholder="Número de Póliza" required />
+                                <Field className="casillas" type="password" name="password" placeholder="Contraseña" required />
                             </div>
                         </fieldset>
                         <button type="submit" className="btn">
@@ -40,28 +53,6 @@ const Aute = () => {
                     </Form>
                 )}
             </Formik>
-
-            <Formik initialValues={{ adminUsername: '', adminPassword: '' }} onSubmit={handleSubmitAdministrador}>
-                {() => (
-                    <Form className="formularioAute">
-                        <p>Ingreso administradores</p>
-                        <fieldset>
-                            <div className="campos">
-                                <i className="fa-solid fa-user-large"></i>
-                                <Field className="casillas" type="text" name="adminUsername" placeholder="Nombre de Usuario (Admin)" required />
-                            </div>
-                            <div className="campos">
-                                <i className="fa-solid fa-lock"></i>
-                                <Field className="casillas" type="password" name="adminPassword" placeholder="Contraseña (Admin)" required />
-                            </div>
-                        </fieldset>
-                        <button type="submit" className="btn">
-                            Ingresar como Administrador
-                        </button>
-                    </Form>
-                )}
-            </Formik>
-
             <footer>
                 <p>Todos los derechos reservados 2023.</p>
             </footer>

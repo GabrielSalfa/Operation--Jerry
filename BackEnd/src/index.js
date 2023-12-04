@@ -8,9 +8,10 @@ const accidentRoutes = require("./TemporaryRoutesBack/accidents");
 const gruasRoutes = require("./TemporaryRoutesBack/gruas");
 const presupRepRoutes = require("./TemporaryRoutesBack/presupuestoRep");
 const reportsRoutes = require("./TemporaryRoutesBack/report");
+const authRoutes = require("./TemporaryRoutesBack/autenti");
 /* Ejecutamos express */
 const app = express();
-const port = process.env.Port || 9000;
+const port = process.env.PORT || 9000;
 
 /* midleware */
 app.use(express.json());
@@ -20,6 +21,8 @@ app.use('/api', accidentRoutes);
 app.use('/api', gruasRoutes);
 app.use('/api', presupRepRoutes);
 app.use('/api', reportsRoutes);
+app.use('/api', authRoutes);
+
 
 
 /*Connection with mondongoDB */

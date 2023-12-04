@@ -1,46 +1,65 @@
 const expres = require("express");
-const employs = require("../models/employs");
-
+const Employ = require("../models/employs");
 const router = expres.Router();
-
+const bcrypt = require('bcrypt');
 // Crear empleado
 router.post("/employs", (req, res) => {
-    const employ = employs(req.body);
+    const employ = new Employ(req.body);
     employ.save()
-        .then((data) => res.json(data))
-        .catch((error) => res.json({message: error}));
+        .then((data) => {
+            console.log(data); // Esto debería mostrar el documento en la consola del servidor
+            res.json(data); // Esto envía la respuesta al cliente
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).json({message: error.message});
+        });
 });
 // Obtener todos los empleados
 router.get("/employs", (req, res) => {
-    employs.find()
+    Employ.find()
         .then((data) => res.json(data))
         .catch((error) => res.json({message: error}));
 });
 // Obtener un empleado
 router.get("/employs/:id", (req, res) => {
     const { id } = req.params;
-    employs
+    Employ
         .findById(id)
         .then((data) => res.json(data))
         .catch((error) => res.json({message: error}));
 });
 // Actualizar un empleado
-router.put("/employs/:id", (req, res) => {
+router.put("/employs/:id", async (req, res) => {
     const {id} = req.params;
     const {username, password, rol} = req.body;
-    employs
-        .updateOne({_id: id},{$set:{username, password, rol}})
-        .then((data) => res.json(data))
-        .catch((error) => res.json({message: error}));
+
+    try {
+        const employ = await Employ.findById(id);
+
+        // Si se proporciona una nueva contraseña, hasheala
+        if (password) {
+            employ.password = await bcrypt.hash(password, saltRounds);
+        }
+
+        // Actualizar el resto de campos
+        if (username) employ.username = username;
+        if (rol) employ.rol = rol;
+
+        await employ.save(); // El hook pre-save se encargará de hashear la contraseña si es nueva o ha cambiado
+        res.json({ message: 'Empleado actualizado con éxito' });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 // Eliminar un empleado
 router.delete("/employs/:id", (req, res) => {
     const {id} = req.params;
-    employs
+    Employ
         .deleteOne({_id:id})
         .then((data) => res.json(data))
         .catch((error) => res.json({message: error}));
 });
-//Metodo para encriptar la contraseña 
+
 module.exports = router;
 
