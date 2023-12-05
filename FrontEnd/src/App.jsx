@@ -5,6 +5,7 @@ import Aute from './components/Autenticacion/Aute';
 import VAdmin from './components/VistaAdmin/VAdmin';
 import ConsultaAsistenciaGrua from "./components/ConsultaAsistenciaGrua/consultaAsistenciaGrua";
 import IngresoSin from "./components/IngresoSiniestro/IngresoSin";
+import ConsultarSiniestrosForm  from './components/Siniestro/Sini';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/Vistaadmin/*" element={<VAdmin />} />
           <Route path="/consultaAsistenciagrua" element={<ConsultaAsistenciaGrua/>} />
           <Route path="/IngresoSiniestro" element={<IngresoSin/>}/>
+          <Route path="/consultarSiniestro" element={<ConsultarSiniestrosForm/>}/>
         </Routes>
       </Router>
     </div>

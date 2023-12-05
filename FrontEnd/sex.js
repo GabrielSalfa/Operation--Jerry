@@ -1,1 +1,0 @@
-var bolas = 2
