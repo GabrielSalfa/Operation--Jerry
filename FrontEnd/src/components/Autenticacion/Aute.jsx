@@ -1,26 +1,26 @@
 import React from 'react';
 import { Form, Field, Formik } from 'formik';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate, Link } from 'react-router-dom'; 
 import './Aute.css';
 
 const Aute = () => {
     const navigate = useNavigate();
 
-    const handleSubmitAdministrador = (values) => {
+    const handleSubmitUsuario = (values) => {
         fetch('http://localhost:9000/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                username: values.adminUsername,
-                password: values.adminPassword
+                username: values.username,
+                password: values.password
             })
         })
         .then(response => response.json())
         .then(data => {
             if (data.token) {
-                alert(`Bienvenido administrador, ${values.adminUsername} :D`);
+                alert(`Bienvenido administrador, ${values.username} :D`);
                 // Guardar token en el almacenamiento local o en el estado global
                 localStorage.setItem('token', data.token);
                 navigate('/VistaAdmin/crear-usuario');
@@ -35,10 +35,10 @@ const Aute = () => {
 
     return ( 
         <div className="BodyAute">
-            <Formik initialValues={{ Username: '', Password: '' }} onSubmit={handleSubmitAdministrador}>
+            <Formik initialValues={{ username: '', password: '' }} onSubmit={handleSubmitUsuario}>
                 {() => (
                     <Form className="formularioAute" autocomplete="off">
-                        <h1 className="Encabezado">Ingreso usuarios</h1>                      
+                        <h1 className="Encabezado">Ingreso Personal</h1>                      
                             <div className="campos">
                                 <Field className="casillas" type="text" name="username" placeholder="Nombre de Usuario" required />
                             </div>
@@ -48,6 +48,7 @@ const Aute = () => {
                         <button type="submit" className="btn">
                             Ingresar
                         </button>
+                        <Link className='volver' to="/">Volver</Link>
                     </Form>
                 )}
             </Formik>

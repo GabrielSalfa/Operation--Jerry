@@ -31,6 +31,6 @@ const ConsultarSiniestrosForm = ({ onSubmit }) => {
             </div>
       </div>
     );
-  };
+};
 
 export default ConsultarSiniestrosForm;

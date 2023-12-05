@@ -1,6 +1,9 @@
+const cors = require('cors');
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
+
+
 
 const employRoutes = require("./TemporaryRoutesBack/employs");
 const insuredRoutes = require("./TemporaryRoutesBack/insured");
@@ -12,7 +15,10 @@ const authRoutes = require("./TemporaryRoutesBack/autenti");
 /* Ejecutamos express */
 const app = express();
 const port = process.env.PORT || 9000;
-
+// Cors va a permitir solicitudes desde el FrontEnd
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
 /* midleware */
 app.use(express.json());
 app.use('/api', employRoutes);

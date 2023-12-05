@@ -82,7 +82,16 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8); 
 }
 
-
+/*Estilo volver */
+.volver {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    color: black;
+}
+.volver:hover {
+    color: purple;
+}
 
 /* Estilo del pie de página */
 .foooter {
