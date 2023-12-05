@@ -39,23 +39,19 @@ const Aute = () => {
                 {() => (
                     <Form className="formularioAute" autocomplete="off">
                         <h1 className="Encabezado">Ingreso usuarios</h1>                      
-                        <fieldset>
                             <div className="campos">
                                 <Field className="casillas" type="text" name="username" placeholder="Nombre de Usuario" required />
                             </div>
                             <div className="campos">
                                 <Field className="casillas" type="password" name="password" placeholder="Contraseña" required />
                             </div>
-                        </fieldset>
                         <button type="submit" className="btn">
                             Ingresar
                         </button>
                     </Form>
                 )}
             </Formik>
-            <footer>
-                <p>Todos los derechos reservados 2023.</p>
-            </footer>
+            <p className="foooter">Todos los derechos reservados 2023.</p>
         </div>
     );
 }

@@ -1,7 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const Employ = require("../models/employs"); // Asegúrate de que la ruta sea correcta
+const Employ = require("../models/employs"); 
 
 const router = express.Router();
 router.post('/login', (req, res) => {
@@ -19,7 +19,6 @@ router.post('/login', (req, res) => {
                     process.env.JWT_SECRET,
                     { expiresIn: '1h' }
                 );
-
                 res.json({
                     message: 'Auth successful',
                     token: token

@@ -41,12 +41,10 @@ router.put("/employs/:id", async (req, res) => {
         if (password) {
             employ.password = await bcrypt.hash(password, saltRounds);
         }
-
-        // Actualizar el resto de campos
         if (username) employ.username = username;
         if (rol) employ.rol = rol;
 
-        await employ.save(); // El hook pre-save se encargará de hashear la contraseña si es nueva o ha cambiado
+        await employ.save(); 
         res.json({ message: 'Empleado actualizado con éxito' });
     } catch (error) {
         res.status(500).json({ message: error.message });
