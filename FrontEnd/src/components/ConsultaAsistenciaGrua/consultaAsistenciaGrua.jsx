@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import './consultaAsistenciaGrua.css';
 import { mostrarContenido } from './consultaAsistenciaGruaBack';
 
-/*
 const ConsultaAsistenciaGrua = () => {
-    const navigate = useNavigate();
+    const [showGlobalStats, setShowGlobalStats] = useState(false);
+    const [numeroSiniestro, setNumeroSiniestro] = useState('');
+    const [data, setData] = useState(null);
 
     const handleConsultasStuff = (values) => {
-        fetch(`http://localhost:9000/api/gruas/${numero_siniestro}`, {
+        alert("Fetcheando...");
+        fetch(`http://localhost:9000/api/gruas/${numeroSiniestro}`, {
+
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -15,20 +18,14 @@ const ConsultaAsistenciaGrua = () => {
         })
             .then(response => response.json())
             .then(data => {
-                Separar info
-                Meter info en espacios correspondientes (A lo mejor hay que reestructurar en más componentes...
+                setData(data);
+                alert("Data fetcheada! \n\n${JSON.stringify(data, null, 2)}");
             })
             .catch(error => {
                 console.log("No se encontró el siniestro especificado.")
             });
+
     }
-}
-
-*/
-
-function ConsultaAsistenciaGrua() {
-    const [showGlobalStats, setShowGlobalStats] = useState(false);
-
     return (
         <div>
             {/* Barra de navegación */}
@@ -41,17 +38,36 @@ function ConsultaAsistenciaGrua() {
                 </nav>
             </div>
             {/* Más cositas */}
+
             <div className="Informacion-Consulta-Asistencia">
                 {/* Este botón tiene modificaciones adicionales para cambiar el tamaño */}
                 <button className="Cool-Button Datos-Consulta-Asistencia" style={{ width: 100, fontSize: '10px', padding: '0.3rem', display: 'flex', alignItems: 'center' }}>
                     <img className="Icono" src="https://cdn-icons-png.flaticon.com/512/3545/3545435.png" alt="Volver" />
                     Volver
                 </button>
-                <h3 className="Datos-Consulta-Asistencia">Revisando siniestro: </h3>
-                <h3 className="Datos-Consulta-Asistencia" id="numero-siniestro">
-                    123456
-                </h3>
+
+                <label>
+                    Numero de Siniestro:
+                    <input
+                        type="number"
+                        value={numeroSiniestro}
+                        onChange={(e) => setNumeroSiniestro(e.target.value)}
+                    />
+                </label>
+
+                <button onClick={handleConsultasStuff}>Fetch Data</button>
+
+
             </div>
+
+            {data && (
+                <div>
+                    {/* Display individual data in <p> elements */}
+                    <p>{data.taller}Esto es temporal. No quedará más bonito, pero quedará funcional ;)</p>
+                    <p>{data.patenteG}Test</p>
+                    {/* Add more <p> elements for other properties */}
+                </div>
+            )}
 
             {/* Visualización de los datos */}
             <table className="Visualizacion-Datos-Grua">
@@ -109,7 +125,7 @@ function ConsultaAsistenciaGrua() {
                 )}
             </div>
         </div>
-    );
+    )
 }
 
 export default ConsultaAsistenciaGrua;
