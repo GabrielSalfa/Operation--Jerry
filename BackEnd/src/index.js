@@ -1,19 +1,19 @@
 const cors = require('cors');
 const express = require("express");
 const mongoose = require("mongoose");
+const { createRoles } = require('./libs/initialSetup');
 require("dotenv").config();
 
-
-
-const employRoutes = require("./TemporaryRoutesBack/employs");
-const insuredRoutes = require("./TemporaryRoutesBack/insured");
-const accidentRoutes = require("./TemporaryRoutesBack/accidents");
-const gruasRoutes = require("./TemporaryRoutesBack/gruas");
-const presupRepRoutes = require("./TemporaryRoutesBack/presupuestoRep");
-const reportsRoutes = require("./TemporaryRoutesBack/report");
-const authRoutes = require("./TemporaryRoutesBack/autenti");
+//Rutas 
+const employRoutes = require("./routes/employsRoutes");
+const insuredRoutes = require("./routes/insured");
+const accidentRoutes = require("./routes/accidents");
+const gruasRoutes = require("./routes/gruas");
+const presupRepRoutes = require("./routes/presupuestoRep");
+const reportsRoutes = require("./routes/report");
 /* Ejecutamos express */
 const app = express();
+createRoles();
 const port = process.env.PORT || 9000;
 // Cors va a permitir solicitudes desde el FrontEnd
 app.use(cors({
@@ -27,9 +27,6 @@ app.use('/api', accidentRoutes);
 app.use('/api', gruasRoutes);
 app.use('/api', presupRepRoutes);
 app.use('/api', reportsRoutes);
-app.use('/api', authRoutes);
-
-
 
 /*Connection with mondongoDB */
 mongoose.connect(process.env.MONGODB_URI)

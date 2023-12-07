@@ -11,12 +11,16 @@ const employSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    rol: {
-        type: String,
-        required: true,
-        enum: ["Call Center", "Analista Siniestro", "Liquidador", "Analista Negocio", "Chofer Grua", "Admin Taller"]
-    }
+    rol: [
+        {
+        ref: "Rol",
+        type: mongoose.Schema.Types.ObjectId
+    }]
+}, {
+    timestamps: true,
+    versionKey: false
 });
+//Hashear contraseña
 employSchema.pre('save', function(next) {
     if (!this.isModified('password')) {
         return next();
@@ -29,4 +33,8 @@ employSchema.pre('save', function(next) {
         next();
     });
 });
+//Comparar contraseña ingresada
+employSchema.statics.comparePassword = async (password, passwordRecibida) =>{
+    return await bcrypt.compare(password,passwordRecibida)
+};
 module.exports = mongoose.model('Employs',employSchema);

@@ -5,7 +5,7 @@ import './Sini.css';
 const ConsultarSiniestrosForm = ({ onSubmit }) => {
     return (
         <div className="pendiente">
-            <div className="pendiente"> {/* Aplica la clase contenedora */}
+            <div className="pendiente"> 
                 <Formik
                 initialValues={{ rut: '', numeroPoliza: '' }}
                 onSubmit={(values, actions) => {
@@ -25,6 +25,7 @@ const ConsultarSiniestrosForm = ({ onSubmit }) => {
                         <button type="submit" disabled={isSubmitting}>
                         Consultar 
                         </button>
+                        <Link className='volver' to="/">Volver</Link>
                     </Form>
                 )}
                 </Formik>
