@@ -21,9 +21,9 @@ const Inicio = () => {
                 <p>Aqui pueden ir iconos de redes sociales como Linkedin o GitHub</p>
             </article>
             <article>
-                <img src="" alt="" />
-                <p>Integrante 2</p>
-                <p>Aqui pueden ir iconos de redes sociales como Linkedin o GitHub</p>
+                <img src="https://media.tenor.com/ieXO0Ui-EoMAAAAC/skull-explode.gif" alt="calaca explosiva.gif" />
+                <p>Beros</p>
+                <p>El diseño gráfico es mi pasión</p>
             </article>
             <article>
                 <img src="" alt="" />
