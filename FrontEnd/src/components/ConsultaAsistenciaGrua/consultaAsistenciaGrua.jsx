@@ -19,7 +19,7 @@ const ConsultaAsistenciaGrua = () => {
             .then(response => response.json())
             .then(data => {
                 setData(data);
-                alert("Data fetcheada! \n\n${JSON.stringify(data, null, 2)}");
+                alert(`Data fetcheada! \n\n${JSON.stringify(data, null, 2)}`);
             })
             .catch(error => {
                 console.log("No se encontró el siniestro especificado.")
