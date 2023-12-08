@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Inicio from './components/Inicio/Inicio';
 import Aute from './components/Autenticacion/Aute';
+import liquidador from './components/Liquidador/liquidador';
 import VAdmin from './components/VistaAdmin/VAdmin';
 import ConsultaAsistenciaGrua from "./components/ConsultaAsistenciaGrua/consultaAsistenciaGrua";
 import IngresoSin from "./components/IngresoSiniestro/IngresoSin";
@@ -18,6 +19,7 @@ function App() {
           <Route path="/consultaAsistenciagrua" element={<ConsultaAsistenciaGrua/>} />
           <Route path="/IngresoSiniestro" element={<IngresoSin/>}/>
           <Route path="/consultarSiniestro" element={<ConsultarSiniestrosForm/>}/>
+          <Route path="/liquidador" element={<liquidador/>}/>
         </Routes>
       </Router>
     </div>

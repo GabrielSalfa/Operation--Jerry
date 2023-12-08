@@ -8,7 +8,7 @@ const ConsultaAsistenciaGrua = () => {
     const [data, setData] = useState(null);
 
     const handleConsultasStuff = (values) => {
-        alert("Fetcheando...");
+        alert(numeroSiniestro);
         fetch(`http://localhost:9000/api/gruas/${numeroSiniestro}`, {
 
             method: 'GET',
@@ -19,10 +19,10 @@ const ConsultaAsistenciaGrua = () => {
             .then(response => response.json())
             .then(data => {
                 setData(data);
-                alert("Data fetcheada! \n\n${JSON.stringify(data, null, 2)}");
+                alert(`Data fetcheada! \n\n${JSON.stringify(data, null, 2)}`);
             })
             .catch(error => {
-                console.log("No se encontró el siniestro especificado.")
+                alert("No se encontró el siniestro especificado.")
             });
 
     }
@@ -49,7 +49,7 @@ const ConsultaAsistenciaGrua = () => {
                 <label>
                     Numero de Siniestro:
                     <input
-                        type="number"
+                        type="text"
                         value={numeroSiniestro}
                         onChange={(e) => setNumeroSiniestro(e.target.value)}
                     />
@@ -60,70 +60,39 @@ const ConsultaAsistenciaGrua = () => {
 
             </div>
 
-            {data && (
-                <div>
-                    {/* Display individual data in <p> elements */}
-                    <p>{data.taller}Esto es temporal. No quedará más bonito, pero quedará funcional ;)</p>
-                    <p>{data.patenteG}Test</p>
-                    {/* Add more <p> elements for other properties */}
-                </div>
-            )}
-
             {/* Visualización de los datos */}
-            <table className="Visualizacion-Datos-Grua">
-                <thead>
-                <tr>
-                    <td>
-                        <h2>Asistido por:</h2>
-                    </td>
-                    <td>
-                        <h2 id="grua-nombre">Grúas pulentas</h2>
-                    </td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Patente:</td>
-                    <td id="grua-patente">RKZB98</td>
-                </tr>
-                <tr>
-                    <td>Chofer:</td>
-                    <td id="grua-chofer">Johnny Camiones</td>
-                </tr>
-                <tr>
-                    <td>Punto de retiro</td>
-                    <td id="grua-retiro">Tocopilla 222</td>
-                </tr>
-                <tr>
-                    <td>Punto de destino</td>
-                    <td id="grua-destino">Taller los pulentos</td>
-                </tr>
-                </tbody>
-            </table>
-            {/* Estadísticas globales */}
-            <div className="Visualizacion-Datos-Grua">
-                <button className="Cool-Button" onClick={() => setShowGlobalStats(!showGlobalStats)}>
-                    Estadísticas Globales
-                </button>
-
-                {showGlobalStats && (
-                    <div id="Estadisticas-Globales">
-                        <h2>Vehículos más asistidos</h2>
-                        <table>
-                            <tr>
-                                <td>
-                                    <p id="estadisticas-marca-mas-asistida">Audi</p>
-                                    <p id="estadisticas-modelo-mas-asistido">Honda Civic</p>
-                                </td>
-                                <td>
-                                    <p id="estadisticas-porcentaje-marca">67%</p>
-                                    <p id="estadisticas-porcentaje-modelo">54%</p>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                )}
-            </div>
+            {data &&
+                <table className="Visualizacion-Datos-Grua">
+                    <thead>
+                    <tr>
+                        <td>
+                            <h2>Asistido por:</h2>
+                        </td>
+                        <td>
+                            <h2 id="grua-nombre">{data.taller}</h2>
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Patente:</td>
+                        <td id="grua-patente">{data.patentG}</td>
+                    </tr>
+                    <tr>
+                        <td>Chofer:</td>
+                        <td id="grua-chofer">{data.chofer}</td>
+                    </tr>
+                    <tr>
+                        <td>Punto de retiro</td>
+                        <td id="grua-retiro">{data.punto_retiro}</td>
+                    </tr>
+                    <tr>
+                        <td>Punto de destino</td>
+                        <td id="grua-destino">{data.taller}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            }
         </div>
     )
 }

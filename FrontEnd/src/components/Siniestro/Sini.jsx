@@ -25,7 +25,7 @@ const ConsultarSiniestrosForm = ({ onSubmit }) => {
                         <button type="submit" disabled={isSubmitting}>
                         Consultar 
                         </button>
-                        <Link className='volver' to="/">Volver</Link>
+                        <link className='volver' to="/">Volver</link>
                     </Form>
                 )}
                 </Formik>
