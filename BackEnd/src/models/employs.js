@@ -11,11 +11,11 @@ const employSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    rol: [
-        {
+    rol: {
         ref: "Rol",
-        type: mongoose.Schema.Types.ObjectId
-    }]
+        type: mongoose.Schema.Types.ObjectId,
+        required: true // Asegúrate de que el rol sea obligatorio
+    }
 }, {
     timestamps: true,
     versionKey: false

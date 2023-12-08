@@ -4,38 +4,34 @@ const Employ = require("../models/employs");
 const Rol = require("../models/rol");
 // Crear empleado
 exports.crearempleado = async (req, res) => {
-
-    const {username, password,rol} = req.body;
+    const { username, password, rol } = req.body;
 
     try {
-        //Verificaremos si el usuario existe en la base de datos
-        const empleadoExistente = await Employ.findOne({username: username});
-        if(empleadoExistente){
-            return res.status(400).json({message: 'El username digitado actualmente se encuentra en uso. Favor ingresar otro.'});
+        const empleadoExistente = await Employ.findOne({ username: username });
+        if (empleadoExistente) {
+            return res.status(400).json({ message: 'El username ya está en uso.' });
         }
+
+        const foundRol = await Rol.findOne({ name: { $eq: rol } });
+        if (!foundRol) {
+            return res.status(400).json({ message: 'Rol inexistente' });
+        }
+
         const newEmploy = new Employ({
             username,
-            password
-    })
-    if ( rol ){
-        const foundRol = await Rol.findOne({name: rol})
-        if (!foundRol) return res.status(400).json({message: 'Rol inexistente'})
-        newEmploy.rol = foundRol._id;
-    } else {
-        return res.status(400).json({message: 'Estimado administrador debe asignarle rol al empleado'})
+            password,
+            rol: foundRol._id
+        });
+
+        const empleadoGuardado = await newEmploy.save();
+        const token = jwt.sign({ id: empleadoGuardado._id }, process.env.JWT_SECRET, {
+            expiresIn: 86400 // 24 horas
+        });
+        console.log(empleadoGuardado);
+        res.status(201).json({ token: token, message: 'Empleado creado con éxito' });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
-    
-    const empleadoGuardado = await newEmploy.save();
-    console.log(empleadoGuardado);
-    const token = jwt.sign({id: empleadoGuardado._id},process.env.JWT_SECRET,{
-        expiresIn: 86400 //24 horas
-    })
-    //Enviaremos su mensaje de exito en
-    res.status(201).json({message: 'Empleado creado con éxito'});
-} catch(error) {
-    res.status(500).json({meesage: error.message});
-}
-    
 };
 // Obtener todos los empleados
 exports.getAllEmploys = async (req, res) => {

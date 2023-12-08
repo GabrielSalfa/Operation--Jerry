@@ -11,7 +11,7 @@ const createRoles = async () => {
             new Rol({ name: 'Liquidador' }).save(),
             new Rol({ name: 'Analista Negocio' }).save(),
             new Rol({ name: 'Chofer Grua' }).save(),
-            new Rol({ name: 'Admin Taller' }).save()
+            new Rol({ name: 'Admin Taller' }).save(),
         ]);
         console.log(values);
     } catch (error) {
