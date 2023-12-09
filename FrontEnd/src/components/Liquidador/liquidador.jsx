@@ -51,7 +51,7 @@ const liquidador = () =>
                     <center><h2>Gestión de Siniestro</h2></center>
                 </div>
 
-                <form>
+                <form><center>
                     <label for="agency">Agencia:</label>
                     <select id="selectagency">
                         <option disabled selected>Escoja una Agencia</option>
@@ -62,9 +62,17 @@ const liquidador = () =>
                     <br></br>
                     <br></br>
                     <label for="tow">Grúa:</label>
-                    <input id="tow" type="text" name="tow"></input>
+                    <select id="tow" type="text" name="tow">
+                    <option disabled selected>Escoja una Grúa</option>
+                        <option value="FIRU23">FIRU23</option>
+                    </select>
+                    <br></br>
+                    <br></br>
                     <label for="cworkshop">Taller:</label>
-                    <input id="cworkshop" type="text" name="cworkshop"></input>
+                    <select id="workshop" type="text" name="workshop">
+                    <option disabled selected>Escoja un Taller</option>
+                        <option value="El Taller de tus sueños">El Taller de tus sueños</option>
+                    </select>
                     <br></br>
                     <br></br>
                     <label for="repairt">Tipo de Reparación:</label>
@@ -74,6 +82,7 @@ const liquidador = () =>
                         <option value="Moderada">Moderada</option>
                         <option value="Completa">Completa</option>
                     </select>
+                    <br></br><br></br>
                     <label for="time">Tiempo Estimado:</label>
                     <input id="time" type="text" name="time"></input>
                     <br></br>
@@ -83,9 +92,10 @@ const liquidador = () =>
                         <input id="desc" type="text" name="desc"></input>
                     </center>
                     <br></br>
-                    <br></br>
                     <label for="day">Día de Entrega:</label>
                     <input id="day" type="text" name="day"></input>
+                    <br></br>
+                    <br></br>
                     <label for="cost">Monto Total:</label>
                     <input id="cost" type="text" name="cost"></input>
                     <br></br>
@@ -94,13 +104,14 @@ const liquidador = () =>
                         <button id="download">
                             Descargar PDF
                         </button>
+                        <br></br>
+                        <br></br>
+                        <img src="https://vinculacion.unab.cl/wp-content/uploads/2018/06/fondo-transparente-logo-color-con-texto-blanco-y-3-palabras.png" id="unab" alt="unab"></img>
+                        <br></br>
+                        <center><h3>Administración de Siniestro v0.5</h3></center>
                     </center>
-                </form>
-            </div><footer>
-                <img src="unab.png" id="unab" alt="unab"></img>
-                <img src="Logo Siniestro.png" id="logo" alt="logo"></img>
-                <center><h3>Administración de Siniestro v0.5</h3></center>
-            </footer>
+                </center></form>
+            </div>
         </div>
     )     
 }
