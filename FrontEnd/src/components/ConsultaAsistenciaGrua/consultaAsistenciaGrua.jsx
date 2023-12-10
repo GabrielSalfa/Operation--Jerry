@@ -92,6 +92,7 @@ const ConsultaAsistenciaGrua = () => {
                     </tbody>
                 </table>
             }
+            <footer className='footerAG'></footer>
         </div>
     )
 }

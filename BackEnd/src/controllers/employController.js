@@ -12,7 +12,7 @@ exports.crearempleado = async (req, res) => {
             return res.status(400).json({ message: 'El username ya está en uso.' });
         }
 
-        const foundRol = await Rol.findOne({ name: { $eq: rol } });
+        const foundRol = await Rol.findById(rol);
         if (!foundRol) {
             return res.status(400).json({ message: 'Rol inexistente' });
         }
@@ -28,7 +28,7 @@ exports.crearempleado = async (req, res) => {
             expiresIn: 86400 // 24 horas
         });
         console.log(empleadoGuardado);
-        res.status(201).json({ token: token, message: 'Empleado creado con éxito' });
+        res.status(201).json({ success: true, message: 'Empleado creado con éxito' }); 
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

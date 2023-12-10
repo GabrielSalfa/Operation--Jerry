@@ -1,5 +1,5 @@
 import React from "react";
-import './style.css';
+import './probando.css';
 
 const liquidador = () =>
 {

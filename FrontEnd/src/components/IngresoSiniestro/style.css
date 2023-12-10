@@ -8,7 +8,7 @@
   --oscuro: #fff;
 }
 .utility {
-  background-color: var(--secundario);
+  background-color: #fff;
 }
 
 .Nav-Principal {
@@ -66,7 +66,7 @@
   border-bottom: 1px solid #333;
 }
 
-footer {
+.footerIngresoSini {
   background-color:#4F5378;
 
   bottom: 0;

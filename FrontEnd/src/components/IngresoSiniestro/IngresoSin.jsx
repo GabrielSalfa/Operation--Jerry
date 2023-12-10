@@ -83,7 +83,7 @@ function IngresoSin() {
             <img src="../../../../../../../../../Downloads/Ingreso%20de%20siniestro/icono-siniestro.png" width="50" height="50" />
             <br />
             <br />
-            <footer>
+            <footer className='footerIngresoSini'>
                 <center>
                     <h5>Página ingreso de siniestro 1.0</h5><br />
                 </center>

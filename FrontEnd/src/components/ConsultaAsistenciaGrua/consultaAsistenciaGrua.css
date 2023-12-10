@@ -344,7 +344,7 @@ template {
     border-bottom: 1px solid #333;
 }
 
-footer {
+.footerAG {
     position: absolute;
     bottom: 0;
     width: 100%;

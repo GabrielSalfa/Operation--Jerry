@@ -1,49 +1,95 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Field, Formik } from 'formik';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import './crearusuario.css';
 
 const CrearUsuario = () => {
+  const [roles, setRoles] = useState([]);
+  const [selectedRole, setSelectedRole] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    fetch('http://localhost:9000/api/roles')
+      .then(response => response.json())
+      .then(data => setRoles(data))
+      .catch(error => console.error('Error:', error));
+  }, []);
+
+  const handleRoleChange = (e) => {
+    setSelectedRole(e.target.value);
+  };
+
   const handleSubmitCreacionUser = (values, formikBag) => {
-    alert('Capturamos los datos del registro');
-    formikBag.resetForm();
+    fetch('http://localhost:9000/api/employs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: values.username,
+        password: values.password,
+        rol: selectedRole
+      })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Respuesta del servidor no fue exitosa');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if(data.success){
+        console.log("Empleado creado con éxito: ", data.message);
+        // Aquí puedes agregar acciones adicionales post-creación
+      } else {
+        console.error("Error al crear el empleado: ", data.message);
+      }
+      formikBag.resetForm();
+    })
+    .catch(error => {
+      console.error("Error al enviar la solicitud: ", error);
+    });
+  };
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
     <div className="crear-usuario-container">
-      <h1 className="titulo-creacion">Formulario de Registro</h1>
-      <Formik initialValues={{ nombre: '', apellido: '', rut: '', email: '', telefono: '' }} onSubmit={handleSubmitCreacionUser}>
-        <Form className="formulario-creacion">
+      <h1 className="titulo-creacion">Formulario de Registro de Empleados</h1>
+      <Formik initialValues={{ username: '', password: '', rol: '' }} onSubmit={handleSubmitCreacionUser}>
+        <Form className="formulario-creacion" autoComplete='off'>
           <div className="form-group">
-            <label htmlFor="nombre">Nombre:</label>
-            <Field className="form-input" type="text" id="nombre" name="nombre" required />
+            <label className="labelAute" htmlFor="username">Nombre de Usuario:</label>
+            <Field className="form-input" type="text" id="username" name="username" required />
+          </div>
+
+          <div className="form-group password-container">
+            <label className="labelAute" htmlFor="password">Contraseña:</label>
+            <div className="input-wrapper">
+              <Field className="form-input" type={showPassword ? 'text' : 'password'} id="password" name="password" required />
+              <button type="button" onClick={togglePasswordVisibility} className="toggle-password">
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
           </div>
 
           <div className="form-group">
-            <label htmlFor="apellido">Apellido:</label>
-            <Field className="form-input" type="text" id="apellido" name="apellido" required />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="rut">RUT:</label>
-            <Field className="form-input" type="number" id="rut" name="rut" required />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="email">Correo Electrónico:</label>
-            <Field className="form-input" type="email" id="email" name="email" required />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="telefono">Teléfono:</label>
-            <Field className="form-input" type="tel" id="telefono" name="telefono" required />
+              <label className="labelAute">Rol:</label>
+              {roles.map(rol => (
+                <label key={rol._id} className="form-check-label">
+                  <Field type="radio" name="rol" value={rol._id} className="form-check-input" />
+                  {rol.name}
+                </label>
+              ))}
           </div>
 
           <button type="submit" className="btn-admin">
-            Crear
+            Crear Empleado
           </button>
         </Form>
       </Formik>
-      <footer>
+      <footer className='footerAute'>
         <p>Todos los derechos reservados 2023.</p>
       </footer>
     </div>
