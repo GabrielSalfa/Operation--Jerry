@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './consultaAsistenciaGrua.css';
-import { mostrarContenido } from './consultaAsistenciaGruaBack';
+import { isAnalistaNegocio } from '../../../../BackEnd/src/middlewares/authJwt'
 
 const ConsultaAsistenciaGrua = () => {
     const [showGlobalStats, setShowGlobalStats] = useState(false);
@@ -8,21 +8,26 @@ const ConsultaAsistenciaGrua = () => {
     const [data, setData] = useState(null);
 
     const handleConsultasStuff = (values) => {
-        alert(numeroSiniestro);
-        fetch(`http://localhost:9000/api/gruas/${numeroSiniestro}`, {
-
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                setData(data);
+        if(isAnalistaNegocio) {
+            alert(numeroSiniestro);
+            const token = localStorage.getItem('token');
+            fetch(`http://localhost:9000/api/gruas/${numeroSiniestro}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             })
-            .catch(error => {
-                alert("No se encontró el siniestro especificado.")
-            });
+                .then(response => response.json())
+                .then(data => {
+                    setData(data);
+                })
+                .catch(error => {
+                    alert("No se encontró el siniestro especificado.")
+                });
+        }
+        else {
+
+        }
 
     }
     return (
