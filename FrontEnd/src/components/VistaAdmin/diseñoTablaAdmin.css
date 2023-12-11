@@ -72,13 +72,13 @@
   z-index: 100;
   right: 0;
   top: 100%;
-  min-width: 150px; /* Asegura un ancho mínimo para el menú */
-  transition: all 0.3s ease; /* Transición suave al aparecer */
+  min-width: 150px; 
+  transition: all 0.3s ease; 
 }
 
 /* Muestra el menú cuando su padre se encuentra en estado hover */
 .acciones:hover .menu-acciones {
-  display: block; /* Muestra el menú en hover */
+  display: block;
 }
 
 .menu-acciones a {

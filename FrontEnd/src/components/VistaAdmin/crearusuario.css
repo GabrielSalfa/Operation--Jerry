@@ -41,20 +41,19 @@
   
   .form-input {
     flex: 1;
-    padding-right: 2.5rem; /* Asegúrate de que el texto no se sobreponga al ícono */
+    padding-right: 2.5rem;
   }
   
-  .toggle-password {
+.toggle-password {
     position: absolute;
     right: 10px;
     border: none;
     background: transparent;
     cursor: pointer;
     outline: none;
-  }
+}
   
-  /* Ajusta el tamaño del ícono si es necesario */
-  .toggle-password svg {
+.toggle-password svg {
     width: 1rem;
     height: 1rem;
   }  
@@ -112,7 +111,7 @@
     position: fixed; 
     bottom: 0; 
     left: 0; 
-    z-index: 1000; /* Asegura que el footer esté sobre otros elementos */
+    z-index: 1000; 
 }
 
 /* Estilo responsivo para pantallas pequeñas */

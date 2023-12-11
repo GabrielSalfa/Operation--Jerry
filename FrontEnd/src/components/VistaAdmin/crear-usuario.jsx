@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Field, Formik } from 'formik';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import * as Yup from 'yup';
 import './crearusuario.css';
 
 const CrearUsuario = () => {
   const [roles, setRoles] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
+  const validationSchema = Yup.object().shape({
+    username: Yup.string().required('El nombre de usuario es requerido'),
+    password: Yup.string().required('La contraseña es requerida'),
+    rol: Yup.string().required('El rol es requerido')
+  });
 
   useEffect(() => {
     fetch('http://localhost:9000/api/roles')
@@ -54,7 +60,11 @@ const CrearUsuario = () => {
   return (
     <div className="crear-usuario-container">
       <h1 className="titulo-creacion">Formulario de Registro de Empleados</h1>
-      <Formik initialValues={{ username: '', password: '', rol: '' }} onSubmit={handleSubmitCreacionUser}>
+      <Formik
+        initialValues={{ username: '', password: '', rol: '' }}
+        onSubmit={handleSubmitCreacionUser}
+        validationSchema={validationSchema}
+      >
         <Form className="formulario-creacion" autoComplete='off'>
           <div className="form-group">
             <label className="labelAute" htmlFor="username">Nombre de Usuario:</label>

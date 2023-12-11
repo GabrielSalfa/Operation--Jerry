@@ -62,14 +62,14 @@ const ListaEmpleados = () => {
     })
     .then(response => {
       if (!response.ok) {
-        // Convertir el error en texto para poder mostrarlo
+        // Convertiremos el error en texto para poder mostrarlo
         return response.text().then(text => { throw new Error(text) });
       }
       return response.json();
     })
     .then(data => {
       if (data.error) {
-        // Si hay un error en los datos, lánzalo para que el bloque catch lo capture
+        // Si hay un error en los datos, se lanza para que el bloque catch lo capture
         throw new Error(data.message);
       }
   
@@ -85,9 +85,7 @@ const ListaEmpleados = () => {
       setEmpleados(updatedEmpleados);
     })
     .catch(error => {
-      // Aquí manejas el error en el frontend, por ejemplo, podrías actualizar el estado de un mensaje de error
       console.error('Error actualizando empleado:', error);
-      // Aquí podrías tener algo como setError(error.toString()) si tienes un estado de error
     });
   };
 
@@ -120,7 +118,6 @@ const ListaEmpleados = () => {
             <th>Username</th>
             <th>Rol</th>
             <th>Acciones</th>
-            {/* Puedes agregar más columnas según sea necesario */}
           </tr>
         </thead>
         <tbody className='CuerpoTEmploys'>

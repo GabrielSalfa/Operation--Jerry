@@ -20,15 +20,21 @@ exports.crearempleado = async (req, res) => {
         const newEmploy = new Employ({
             username,
             password,
-            rol: foundRol._id
+            rol: foundRol._id // Asegúrate de que el rol es un ObjectId referenciado en el modelo Employ
         });
 
         const empleadoGuardado = await newEmploy.save();
-        const token = jwt.sign({ id: empleadoGuardado._id }, process.env.JWT_SECRET, {
+
+        // Ahora incluye el rol en el token
+        const token = jwt.sign({
+            id: empleadoGuardado._id,
+            role: foundRol.name // Asume que foundRol tiene una propiedad 'name' que es el nombre del rol
+        }, process.env.JWT_SECRET, {
             expiresIn: 86400 // 24 horas
         });
+
         console.log(empleadoGuardado);
-        res.status(201).json({ success: true, message: 'Empleado creado con éxito' }); 
+        res.status(201).json({ token: token, message: 'Empleado creado con éxito' });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -94,7 +100,7 @@ exports.login = async (req, res) => {
         }
 
         // Como todo es válido, genera el token
-        const token = jwt.sign({ id: busquedaEmpleado._id }, process.env.JWT_SECRET, {
+        const token = jwt.sign({ id: busquedaEmpleado._id, role: busquedaEmpleado.rol.name }, process.env.JWT_SECRET, {
             expiresIn: 86400 // 24 horas
         });
 
