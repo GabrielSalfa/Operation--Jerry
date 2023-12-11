@@ -5,7 +5,6 @@ import './crearusuario.css';
 
 const CrearUsuario = () => {
   const [roles, setRoles] = useState([]);
-  const [selectedRole, setSelectedRole] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
@@ -15,20 +14,18 @@ const CrearUsuario = () => {
       .catch(error => console.error('Error:', error));
   }, []);
 
-  const handleRoleChange = (e) => {
-    setSelectedRole(e.target.value);
-  };
-
   const handleSubmitCreacionUser = (values, formikBag) => {
+    const token = localStorage.getItem('token');
     fetch('http://localhost:9000/api/employs', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'x-access-token': token
       },
       body: JSON.stringify({
         username: values.username,
         password: values.password,
-        rol: selectedRole
+        rol: values.rol 
       })
     })
     .then(response => {
@@ -40,7 +37,6 @@ const CrearUsuario = () => {
     .then(data => {
       if(data.success){
         console.log("Empleado creado con éxito: ", data.message);
-        // Aquí puedes agregar acciones adicionales post-creación
       } else {
         console.error("Error al crear el empleado: ", data.message);
       }
@@ -50,6 +46,7 @@ const CrearUsuario = () => {
       console.error("Error al enviar la solicitud: ", error);
     });
   };
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -78,11 +75,11 @@ const CrearUsuario = () => {
               <label className="labelAute">Rol:</label>
               {roles.map(rol => (
                 <label key={rol._id} className="form-check-label">
-                  <Field type="radio" name="rol" value={rol._id} className="form-check-input" />
+                  <Field type="radio" name="rol" value={rol._id} className="form-check-input"/>
                   {rol.name}
                 </label>
               ))}
-          </div>
+            </div>
 
           <button type="submit" className="btn-admin">
             Crear Empleado

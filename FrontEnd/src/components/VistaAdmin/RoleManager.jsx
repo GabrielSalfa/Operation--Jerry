@@ -25,9 +25,8 @@ const RolesComponent = () => {
       });
   }, []);
 
-  const handleRoleSelection = (values) => { // Define esta función
+  const handleRoleSelection = (values) => { 
     console.log('Rol seleccionado:', values.rol);
-    // Aquí puedes añadir más lógica
   };
 
   if (isLoading) {

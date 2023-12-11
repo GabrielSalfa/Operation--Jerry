@@ -1,0 +1,103 @@
+/* Estilo general para la tabla */
+.tablaEmploys {
+  width: 80%; 
+  margin: 20px auto; 
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Estilo para las celdas de encabezado */
+.CtablaEmploys th {
+  background-color: #007BFF;
+  color: white;
+  text-align: left;
+  padding: 10px 12px; 
+  font-size: 14px; 
+}
+
+/* Estilo para las filas del cuerpo de la tabla */
+.CuerpoTEmploys td {
+  padding: 10px 12px; 
+  border-bottom: 1px solid #ddd;
+  color: #333;
+  font-size: 12px; 
+}
+
+/* Estilo para las filas impares del cuerpo */
+.CuerpoTEmploys tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+/* Estilo para las filas pares del cuerpo */
+.CuerpoTEmploys tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+/* Estilo para el hover de las filas */
+.CuerpoTEmploys tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Estilo para el encabezado de la tabla */
+.TituloTabla {
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 20px; 
+}
+/* Estilo para el botón de acciones */
+.boton-acciones {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilo para el menú de acciones */
+.menu-acciones {
+  display: none; 
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 100;
+  right: 0;
+  top: 100%;
+  min-width: 150px; /* Asegura un ancho mínimo para el menú */
+  transition: all 0.3s ease; /* Transición suave al aparecer */
+}
+
+/* Muestra el menú cuando su padre se encuentra en estado hover */
+.acciones:hover .menu-acciones {
+  display: block; /* Muestra el menú en hover */
+}
+
+.menu-acciones a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+  white-space: nowrap;
+  transition: background-color 0.1s ease; 
+}
+
+.menu-acciones a:hover {
+  background-color: #007BFF;
+  color: white;
+}
+
+/* Estilo para el contenedor de acciones */
+.acciones {
+  position: relative;
+  text-align: center;
+}
+
