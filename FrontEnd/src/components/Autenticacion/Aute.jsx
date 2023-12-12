@@ -29,10 +29,10 @@ const Aute = () => {
                 // Redirige al usuario basado en su rol
                 switch(decoded.role) {
                     case 'Call Center':
-                        navigate('/ruta-call-center');
+                        navigate('/IngresoSiniestro/IngresoSin');
                         break;
                     case 'Analista Siniestro':
-                        navigate('/ruta-analista-siniestro');
+                        navigate('/consultaAsistenciagrua');
                         break;
                     case 'Liquidador':
                         navigate('/Liquidador/liquidador');
@@ -44,7 +44,7 @@ const Aute = () => {
                         navigate('/');
                         break;
                     case 'Admin Taller':
-                        navigate('/ruta-admin-taller');
+                        navigate('/Siniestro/Sini');
                         break;
                     default:
                         navigate('/'); // Redirigir a inicio o a una página de error si el rol no es reconocido

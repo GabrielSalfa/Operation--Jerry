@@ -7,12 +7,10 @@ const ConsultaAsistenciaGrua = () => {
     const [data, setData] = useState(null);
 
     const handleConsultasStuff = (values) => {
-        const token = localStorage.getItem('token');
         fetch(`http://localhost:9000/api/gruas/${numeroSiniestro}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'x-access-token': token
             }
         })
             .then(response => response.json())
@@ -23,43 +21,36 @@ const ConsultaAsistenciaGrua = () => {
                 alert("No se encontró el siniestro especificado.");
             });
     }
+
     return (
-        <div>
+        <div className="container">
             {/* Barra de navegación */}
-            <div className="utility">
-                <nav className="Nav-Principal contenedor">
-                    <a href="#">Inicio</a>
-                    <a href="#">Sobre Mi</a>
-                    <a href="#">Clientes</a>
-                    <a href="#">Contacto</a>
-                </nav>
-            </div>
+            <header className="header">
+                <h1>
+                    <center>CONSULTA ASISTENCIA GRUA</center>
+                </h1>
+                <br />
+            </header>
             {/* Más cositas */}
 
-            <div className="Informacion-Consulta-Asistencia">
-                {/* Este botón tiene modificaciones adicionales para cambiar el tamaño */}
-                <button className="Cool-Button Datos-Consulta-Asistencia" style={{ width: 100, fontSize: '10px', padding: '0.3rem', display: 'flex', alignItems: 'center' }}>
-                    <img className="Icono" src="https://cdn-icons-png.flaticon.com/512/3545/3545435.png" alt="Volver" />
-                    Volver
-                </button>
-
+            <div className="formContainer">
                 <label>
                     Numero de Siniestro:
                     <input
                         type="text"
+                        className="superInput"
                         value={numeroSiniestro}
                         onChange={(e) => setNumeroSiniestro(e.target.value)}
                     />
                 </label>
-
-                <button onClick={handleConsultasStuff}>Fetch Data</button>
-
-
+                <button className="superButton" onClick={handleConsultasStuff}>
+                    Fetch Data
+                </button>
             </div>
 
             {/* Visualización de los datos */}
             {data &&
-                <table className="Visualizacion-Datos-Grua">
+                <table className="dataTable">
                     <thead>
                     <tr>
                         <td>
@@ -90,7 +81,7 @@ const ConsultaAsistenciaGrua = () => {
                     </tbody>
                 </table>
             }
-            <footer className='footerAG'></footer>
+            <footer className='footer'></footer>
         </div>
     )
 }
