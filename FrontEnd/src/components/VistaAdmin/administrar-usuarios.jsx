@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './diseñoTablaAdmin.css';
 import Modal from './Modal';
 
-
 const ListaEmpleados = () => {
   const [empleados, setEmpleados] = useState([]);
   const [menuActivo, setMenuActivo] = useState(null);

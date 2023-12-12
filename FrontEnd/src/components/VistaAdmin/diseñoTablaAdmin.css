@@ -1,103 +1,74 @@
-/* Estilo general para la tabla */
+.TituloTabla {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+}
+
+/* Estilos de la Tabla */
 .tablaEmploys {
-  width: 80%; 
-  margin: 20px auto; 
+  width: 100%;
   border-collapse: collapse;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  border-radius: 8px;
   overflow: hidden;
 }
 
-/* Estilo para las celdas de encabezado */
+.CtablaEmploys {
+  background-color: #007bff; /* Color de fondo de la cabecera */
+  color: white; /* Color del texto de la cabecera */
+}
+
 .CtablaEmploys th {
-  background-color: #007BFF;
-  color: white;
+  padding: 12px 15px;
   text-align: left;
-  padding: 10px 12px; 
-  font-size: 14px; 
+  font-weight: bold;
 }
 
-/* Estilo para las filas del cuerpo de la tabla */
 .CuerpoTEmploys td {
-  padding: 10px 12px; 
-  border-bottom: 1px solid #ddd;
-  color: #333;
-  font-size: 12px; 
+  padding: 12px 15px;
+  border-bottom: 1px solid #eaecef;
 }
 
-/* Estilo para las filas impares del cuerpo */
-.CuerpoTEmploys tr:nth-child(odd) {
-  background-color: #f9f9f9;
-}
-
-/* Estilo para las filas pares del cuerpo */
 .CuerpoTEmploys tr:nth-child(even) {
-  background-color: #ffffff;
+  background-color: #edf2f7; /* Color de fondo de las filas pares */
 }
 
-/* Estilo para el hover de las filas */
-.CuerpoTEmploys tr:hover {
-  background-color: #f1f1f1;
-}
 
-/* Estilo para el encabezado de la tabla */
-.TituloTabla {
-  text-align: center;
-  color: #333;
-  margin-bottom: 10px;
-  font-size: 20px; 
-}
-/* Estilo para el botón de acciones */
 .boton-acciones {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 0;
-  line-height: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Estilo para el menú de acciones */
-.menu-acciones {
-  display: none; 
-  position: absolute;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 5px 0;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  z-index: 100;
-  right: 0;
-  top: 100%;
-  min-width: 150px; 
-  transition: all 0.3s ease; 
-}
-
-/* Muestra el menú cuando su padre se encuentra en estado hover */
-.acciones:hover .menu-acciones {
-  display: block;
-}
-
-.menu-acciones a {
-  display: block;
-  padding: 10px 20px;
-  text-decoration: none;
-  color: #333;
-  white-space: nowrap;
-  transition: background-color 0.1s ease; 
-}
-
-.menu-acciones a:hover {
-  background-color: #007BFF;
+  background-color: #17a2b8;
   color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* Estilo para el contenedor de acciones */
-.acciones {
-  position: relative;
-  text-align: center;
+.boton-acciones:hover {
+  background-color: #138496;
 }
 
+.menu-acciones {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.menu-acciones button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menu-acciones button:hover {
+  background-color: #218838;
+}
