@@ -16,10 +16,10 @@ const Inicio = () => {
             <nav className='BarraDeNav'>
                 <div className='NavBotones'>
                     <Link to="/autenticacion" className='BotonNav'>Iniciar Sesión Empleado</Link>
-                    <Link to="/consultar-siniestro" className='BotonNav'>Consultar Siniestro</Link>
+                    <Link to="/consultarSiniestro" className='BotonNav'>Consultar Siniestro</Link>
                 </div>
             </nav>
-
+        
             <h1 className = 'Titular'>Bienvenido a nuestro Sistema de Siniestros</h1>
             <Slider images={images} /> {/* Aquí se utiliza el componente Slider */}
             <h2>Sobre Nuestro Equipo</h2>

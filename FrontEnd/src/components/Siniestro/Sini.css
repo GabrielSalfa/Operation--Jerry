@@ -1,4 +1,95 @@
-/*Estilo volver */
+
+.ContenedorSiniestro {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.pendiente {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+}
+
+.TituloSiniestro {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.Label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.Input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.FormContainer {
+    text-align: center; /* Alinea el contenido al centro */
+}
+
+.botonbello {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.botonbello:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.volver {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.Cargando {
+    margin-top: 20px;
+    color: #4caf50;
+}
+
+.error {
+    margin-top: 20px;
+    color: #ff0000;
+}
+
+.TituloResultados {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.MapeoAccident {
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.pResultados {
+    margin: 0;
+}
+
+.NoResultados {
+    margin-top: 20px;
+    color: #333;
+}
+
+
+
+
 .volver {
     display: flex;
     justify-content: center;

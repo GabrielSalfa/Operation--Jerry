@@ -21,9 +21,22 @@ exports.createAccident = async (req, res) => {
 };
 
 exports.getAllAccidents = async (req, res) => {
-  Accident.find()
-    .then((data) => res.json(data))
-    .catch((error) => res.status(400).json({ message: error.message }));
+  try {
+    let query = {};
+
+    if (req.query.rut) {
+      query.rutOwner = req.query.rut;
+    }
+
+    if (req.query.policyNumber) {
+      query.policyNumber = req.query.policyNumber;
+    }
+
+    const accidents = await Accident.find(query);
+    res.json(accidents);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };
 
 exports.getAccidentById = async (req, res) => {
