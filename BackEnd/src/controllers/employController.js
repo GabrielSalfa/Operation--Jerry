@@ -100,7 +100,7 @@ exports.login = async (req, res) => {
         }
 
         // Como todo es válido, genera el token
-        const token = jwt.sign({ id: busquedaEmpleado._id, role: busquedaEmpleado.rol.name }, process.env.JWT_SECRET, {
+        const token = jwt.sign({ id: busquedaEmpleado._id,role: busquedaEmpleado.rol.name }, process.env.JWT_SECRET, {
             expiresIn: 86400 // 24 horas
         });
 

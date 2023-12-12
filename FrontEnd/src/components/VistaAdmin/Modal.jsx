@@ -1,17 +1,17 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+
 const Modal = ({ empleado, cerrarModal, onSubmit, roles = [] }) => {
-    // Definir el esquema de validación para el formulario
     const empleadoSchema = Yup.object().shape({
         username: Yup.string().required('El nombre de usuario es obligatorio'),
         password: Yup.string(),
         rol: Yup.string().required('El rol es obligatorio'),
     });
-    //Queda pendiente darle estilo al Modal
+
     return (
         <div className="modal">
-            <Formik className='FormikModal'
+            <Formik
                 initialValues={{
                     username: empleado.username || '',
                     password: '', // La contraseña inicialmente está vacía
@@ -19,18 +19,15 @@ const Modal = ({ empleado, cerrarModal, onSubmit, roles = [] }) => {
                 }}
                 validationSchema={empleadoSchema}
                 onSubmit={(values, { setSubmitting }) => {
-                    // Solo se envía la contraseña si el usuario ingresó una nueva
-                    console.log("id del empleado",empleado._id);
                     const updateValues = {
                         username: values.username,
                         rol: values.rol,
                         ...(values.password && { password: values.password }),
                     };
 
-                    // Llamada a la función onSubmit proporcionada por el componente padre
                     onSubmit(empleado._id, updateValues); 
                     setSubmitting(false);
-                    cerrarModal(); // Cerrar el modal después de enviar el formulario
+                    cerrarModal();
                 }}
             >
                 {({ errors, touched }) => (
@@ -44,12 +41,12 @@ const Modal = ({ empleado, cerrarModal, onSubmit, roles = [] }) => {
                             <Field className='campoField' name="password" type="password" placeholder="Nueva contraseña" />
                         </div>
                         <div className='DivModal'>
-                            <label className='LabelModal'>Rol:</label>
+                            <p className='LabelModal'>Rol:</p>
                             {roles.map((rol) => (
-                                <label key={rol._id}>
-                                    <Field className='campoField' type="radio" name="rol" value={rol._id} checked={rol._id === empleado.rol?._id} />
-                                    {rol.name}
-                                </label>
+                                <div key={rol._id} className="radio-group">
+                                    <Field className='radio-button' type="radio" name="rol" value={rol._id} />
+                                    <label className="radio-label">{rol.name}</label>
+                                </div>
                             ))}
                         </div>
                         <button className='BtnnModal'  type="submit">Actualizar</button>

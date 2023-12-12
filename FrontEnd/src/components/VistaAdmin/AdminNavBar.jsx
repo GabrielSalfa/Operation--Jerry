@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const AdminNavBar = () => {
     return (
-        <div>
+        <div className="BarraDeNav">
             <nav className="NavAdmin">
                 <ul>
                     <li>

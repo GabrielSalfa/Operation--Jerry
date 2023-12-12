@@ -151,4 +151,5 @@ const ListaEmpleados = () => {
     );
   };
 
+
 export default ListaEmpleados;

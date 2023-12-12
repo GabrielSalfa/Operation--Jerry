@@ -6,7 +6,7 @@ const { verificarToken, isAnalistaNegocio } = require('../middlewares/authJwt');
 
 //Rutas directas relacionadas a empleado
 router.post("/employs",[verificarToken, isAnalistaNegocio], employController.crearempleado);
-router.get("/employs", employController.getAllEmploys);
+router.get("/employs",employController.getAllEmploys);
 router.get("/employs/:id",[verificarToken, isAnalistaNegocio], employController.getEmployById);
 router.put("/employs/:id", [verificarToken, isAnalistaNegocio],employController.updateEmployById);
 router.delete("/employs/:id",[verificarToken, isAnalistaNegocio], employController.deleteEmployById);
