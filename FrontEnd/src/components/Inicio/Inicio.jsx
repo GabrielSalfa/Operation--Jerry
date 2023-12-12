@@ -31,8 +31,8 @@ const Inicio = () => {
                 <p>Aqui pueden ir iconos de redes sociales como Linkedin o GitHub</p>
             </article>
             <article>
-                <img src="" alt="" />
-                <p>Integrante 4</p>
+                <img src="warr.png" alt="" />
+                <p>Kris</p>
                 <p>Aqui pueden ir iconos de redes sociales como Linkedin o GitHub</p>
             </article>
 
