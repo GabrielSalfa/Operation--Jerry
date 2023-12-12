@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { jsPDF } from "jspdf";
+import "./probando.css";
 
 const Liquidador = () => {
   const [accident, setAccident] = useState("");
@@ -17,6 +18,9 @@ const Liquidador = () => {
     e.preventDefault();
 
     try {
+      const doc = new jsPDF();
+      doc.text("Contenido del PDF", 10, 10);
+      doc.save("liquidator.pdf");
       const response = await axios.post("http://localhost:3000/api/liquidator", {
         accident,
         agency,
@@ -27,7 +31,8 @@ const Liquidador = () => {
         desc,
         deliver,
         cost,
-      });
+      }
+      );
       console.log(response.data); // Aquí puedes manejar la respuesta del servidor
 
       // Restablecer los estados después del envío exitoso
@@ -45,15 +50,8 @@ const Liquidador = () => {
     }
   };
 
-  const generarPDF = () => {
-    // Lógica para generar el PDF
-    const doc = new jsPDF();
-    doc.text("Contenido del PDF", 10, 10);
-    doc.save("liquidator.pdf");
-  };
-
   return (
-    <div className="BodyLiqu">
+    <div className="BodyLiqu" onSubmit={handleSubmit}>
       <center>
         <h1 id="title1">Liquidador: Ernesto Jorquera</h1>
       </center>
@@ -113,8 +111,8 @@ const Liquidador = () => {
             </select>
             <br></br>
             <br></br>
-            <label for="repairt">Tipo de Reparación:</label>
-            <select id="repairt">
+            <label for="repair">Tipo de Reparación:</label>
+            <select id="repair">
               <option disabled selected>
                 Tipo de Reparación
               </option>
@@ -142,7 +140,7 @@ const Liquidador = () => {
             <br></br>
             <br></br>
             <center>
-              <button id="download">Descargar PDF</button>
+              <button type="submit" id="download">Descargar PDF</button>
               <br></br>
               <br></br>
               <img
@@ -161,4 +159,4 @@ const Liquidador = () => {
     </div>
   );
 };
-export default liquidador;
+export default Liquidador;

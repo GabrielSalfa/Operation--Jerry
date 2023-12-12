@@ -35,13 +35,13 @@ const Aute = () => {
                         navigate('/ruta-analista-siniestro');
                         break;
                     case 'Liquidador':
-                        navigate('/ruta-liquidador');
+                        navigate('/Liquidador/liquidador');
                         break;
                     case 'Analista Negocio':
                         navigate('/VistaAdmin/crear-usuario');
                         break;
                     case 'Chofer Grúa':
-                        navigate('/ruta-chofer-grua');
+                        navigate('/');
                         break;
                     case 'Admin Taller':
                         navigate('/ruta-admin-taller');
