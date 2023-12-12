@@ -1,6 +1,7 @@
 import React from 'react';
-import Slider from './MaximumSlider'; // Importa el componente Slider
-import './diseñoIni.css'; // Asegúrate de que este es tu archivo CSS para Inicio
+import { Link } from 'react-router-dom';
+import Slider from './MaximumSlider'; // Importamos el componente Slider
+import './diseñoIni.css';
 
 const Inicio = () => {
     // Puedes definir tus imágenes aquí o traerlas de props o un contexto si es necesario
@@ -12,28 +13,35 @@ const Inicio = () => {
 
     return (
         <div className='Contenedor'>
+            <nav className='BarraDeNav'>
+                <div className='NavBotones'>
+                    <Link to="/autenticacion" className='BotonNav'>Iniciar Sesión Empleado</Link>
+                    <Link to="/consultar-siniestro" className='BotonNav'>Consultar Siniestro</Link>
+                </div>
+            </nav>
+
             <h1 className = 'Titular'>Bienvenido a nuestro Sistema de Siniestros</h1>
             <Slider images={images} /> {/* Aquí se utiliza el componente Slider */}
             <h2>Sobre Nuestro Equipo</h2>
-            <article>
+            <article className='Integrantes'>
                 <img src="https://i.ytimg.com/vi/JvOGANs3hYI/oar2.jpg" alt="" />
-                <p>Integrante 1</p>
-                <p>Aqui pueden ir iconos de redes sociales como Linkedin o GitHub</p>
+                <p>Mati</p>
+                <p>Me gusto el BackEnd</p>
             </article>
-            <article>
+            <article className='Integrantes'>
                 <img src="https://media.tenor.com/ieXO0Ui-EoMAAAAC/skull-explode.gif" alt="calaca explosiva.gif" />
                 <p>Beros</p>
                 <p>El diseño gráfico es mi pasión</p>
             </article>
-            <article>
+            <article className='Integrantes'>
                 <img src="" alt="" />
                 <p>Integrante 3</p>
                 <p>Aqui pueden ir iconos de redes sociales como Linkedin o GitHub</p>
             </article>
-            <article>
+            <article className='Integrantes'>
                 <img src="warr.png" alt="" />
                 <p>Kris</p>
-                <p>Aqui pueden ir iconos de redes sociales como Linkedin o GitHub</p>
+                <p>"Alo?"</p>
             </article>
 
         </div>
