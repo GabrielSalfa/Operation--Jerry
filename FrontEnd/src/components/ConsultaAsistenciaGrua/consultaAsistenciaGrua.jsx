@@ -22,7 +22,9 @@ const ConsultaAsistenciaGrua = () => {
             });
     }
 
+
     return (
+        <div className="container">
         <div className="container">
             {/* Barra de navegación */}
             <header className="header">

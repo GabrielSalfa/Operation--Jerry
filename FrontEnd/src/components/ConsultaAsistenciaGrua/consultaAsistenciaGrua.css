@@ -10,6 +10,8 @@
 
 .navigationLinks {
     list-style: none;
+.navigationLinks {
+    list-style: none;
     display: flex;
     justify-content: center;
     margin: 10px 0;
@@ -18,6 +20,8 @@
 .navigationLinks a {
     color: #3498db;
     text-decoration: none;
+    margin: 0 20px;
+    font-weight: bold;
     margin: 0 20px;
     font-weight: bold;
 }
@@ -44,33 +48,62 @@
     color: white;
     padding: 10px 15px;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
 }
 
-.superButton:hover {
-    background-color: #217dbb;
-}
-
-.dataTable {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-}
-
-.dataTable th,
-.dataTable td {
-    border: 1px solid #3498db;
-    padding: 10px;
-    text-align: left;
-}
-
-.footer {
-    background-color: #3498db;
-    color: white;
+.Formulario {
+    width: fit-content;
+    margin: auto;
+    border-radius: 25px;
+    background-color: #fff; /* --blanco */
     text-align: center;
-    position: fixed;
+    padding: 2%;
+    transform: translate(0, 50%);
+}
+
+.Inputcito {
+    outline: none;
+    border: none;
+    margin-bottom: 1px;
+    background-color: transparent;
+    border-bottom: 1px solid #333;
+}
+
+.footerAG {
+    position: absolute;
     bottom: 0;
     width: 100%;
+    height: 50px;
+    background-color: #fff; /* --blanco */
+}
+
+.Visualizacion-Datos-Grua {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-spacing: 10px;
+    background-color: #4F5378; /* --azul */
+    border: 1px solid #333333;
+}
+
+.Informacion-Consulta-Asistencia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #9CA766; /* --lima */
+}
+
+.Datos-Consulta-Asistencia {
+    margin-right: 1%;
+}
+
+.Icono {
+    width: 25px;
+    height: 25px;
+}
+
+#Estadisticas-Globales {
+    display: none;
 }
