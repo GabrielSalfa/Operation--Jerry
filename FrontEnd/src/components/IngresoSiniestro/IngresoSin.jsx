@@ -22,125 +22,125 @@ function IngresoSin() {
 
     try {
       const response = await axios.post(
-        "http://localhost:9000/api/accidents",
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+          "http://localhost:9000/api/accidents",
+          formData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
       );
 
-      console.log(response.data); // Manejar la respuesta del servidor
+      console.log(response.data); // Handle the server response
     } catch (error) {
       console.error("Error al enviar el formulario:", error);
     }
   };
 
   return (
-    <div>
-      <header>
-        <div className="menu">
-          <a href="#Inicio" className="inactivo">
-            Inicio
-          </a>
-          <span style={{ marginLeft: "20px" }}></span>
-          <a href="#Ingreso de usuario" className="inactivo">
-            Ingreso de usuario
-          </a>
-          <span style={{ marginLeft: "20px" }}></span>
-          <a href="#Consulta de siniestros" className="inactivo">
-            Consulta de siniestros
-          </a>
-        </div>
-        <h1>
-          <center>INGRESO DE SINIESTRO</center>
-        </h1>
+      <div>
+        <header>
+          <div className="menu">
+            <a href="#Inicio" className="inactivo">
+              Inicio
+            </a>
+            <span style={{ marginLeft: "20px" }}></span>
+            <a href="#Ingreso de usuario" className="inactivo">
+              Ingreso de usuario
+            </a>
+            <span style={{ marginLeft: "20px" }}></span>
+            <a href="#Consulta de siniestros" className="inactivo">
+              Consulta de siniestros
+            </a>
+          </div>
+          <h1 className="titulo">
+            <center>INGRESO DE SINIESTRO</center>
+          </h1>
+          <br />
+        </header>
         <br />
-      </header>
-      <br />
-      <br />
-      <div className="form-group">
-        <form onSubmit={handleSubmit}>
+        <br />
+        <div className="form-group">
+          <form onSubmit={handleSubmit}>
+            <center>
+              <label className="superLabel" htmlFor="rutOwner">RUT del Propietario:</label>
+              <input
+                  type="text"
+                  id="rutOwner"
+                  name="rutOwner"
+                  onChange={handleInputChange}
+                  required
+              />
+            </center>
+            <br />
+            <center>
+              <label className="superLabel" htmlFor="policyNumber">Número de Póliza:</label>
+              <input
+                  type="text"
+                  id="policyNumber"
+                  name="policyNumber"
+                  onChange={handleInputChange}
+                  required
+              />
+            </center>
+            <br />
+            <center>
+              <label className="superLabel" htmlFor="liquidator_name">Nombre del Liquidador:</label>
+              <input
+                  type="text"
+                  id="liquidator_name"
+                  name="liquidator_name"
+                  onChange={handleInputChange}
+                  required
+              />
+            </center>
+            <br />
+            <center>
+              <label className="superLabel" htmlFor="date">Fecha:</label>
+              <input
+                  type="date"
+                  id="date"
+                  name="date"
+                  onChange={handleInputChange}
+                  required
+              />
+            </center>
+            <br />
+            <center>
+              <label className="superLabel" htmlFor="workshop_assign">Taller Asignado:</label>
+              <input
+                  type="text"
+                  id="workshop_assign"
+                  name="workshop_assign"
+                  onChange={handleInputChange}
+                  required
+              />
+            </center>
+            <br />
+            <center>
+              <button type="submit" className="superButton" id="boton1">
+                Ingresar siniestro
+              </button>
+            </center>
+          </form>
+        </div>
+        <br />
+        <br />
+        <br />
+        <img
+            src="../../../../../../../../../Downloads/Ingreso%20de%20siniestro/icono-siniestro.png"
+            width="50"
+            height="50"
+        />
+        <br />
+        <br />
+        <footer className="footerIngresoSini">
           <center>
-            <label htmlFor="rutOwner">RUT del Propietario:</label>
-            <input
-              type="text"
-              id="rutOwner"
-              name="rutOwner"
-              onChange={handleInputChange}
-              required
-            />
+            <h5>Página ingreso de siniestro 1.0</h5>
+            <br />
           </center>
-          <br />
-          <center>
-            <label htmlFor="policyNumber">Número de Póliza:</label>
-            <input
-              type="text"
-              id="policyNumber"
-              name="policyNumber"
-              onChange={handleInputChange}
-              required
-            />
-          </center>
-          <br />
-          <center>
-            <label htmlFor="liquidator_name">Nombre del Liquidador:</label>
-            <input
-              type="text"
-              id="liquidator_name"
-              name="liquidator_name"
-              onChange={handleInputChange}
-              required
-            />
-          </center>
-          <br />
-          <center>
-            <label htmlFor="date">Fecha:</label>
-            <input
-              type="date"
-              id="date"
-              name="date"
-              onChange={handleInputChange}
-              required
-            />
-          </center>
-          <br />
-          <center>
-            <label htmlFor="workshop_assign">Taller Asignado:</label>
-            <input
-              type="text"
-              id="workshop_assign"
-              name="workshop_assign"
-              onChange={handleInputChange}
-              required
-            />
-          </center>
-          <br />
-          <center>
-            <button type="submit" id="boton1">
-              Ingresar siniestro
-            </button>
-          </center>
-        </form>
+        </footer>
       </div>
-      <br />
-      <br />
-      <br />
-      <img
-        src="../../../../../../../../../Downloads/Ingreso%20de%20siniestro/icono-siniestro.png"
-        width="50"
-        height="50"
-      />
-      <br />
-      <br />
-      <footer className="footerIngresoSini">
-        <center>
-          <h5>Página ingreso de siniestro 1.0</h5>
-          <br />
-        </center>
-      </footer>
-    </div>
   );
 }
 
