@@ -12,7 +12,7 @@ exports.crearempleado = async (req, res) => {
             return res.status(400).json({ message: 'El username ya está en uso.' });
         }
 
-        const foundRol = await Rol.findOne({ name: { $eq: rol } });
+        const foundRol = await Rol.findById(rol);
         if (!foundRol) {
             return res.status(400).json({ message: 'Rol inexistente' });
         }
@@ -20,13 +20,19 @@ exports.crearempleado = async (req, res) => {
         const newEmploy = new Employ({
             username,
             password,
-            rol: foundRol._id
+            rol: foundRol._id // Asegúrate de que el rol es un ObjectId referenciado en el modelo Employ
         });
 
         const empleadoGuardado = await newEmploy.save();
-        const token = jwt.sign({ id: empleadoGuardado._id }, process.env.JWT_SECRET, {
+
+        // Ahora incluye el rol en el token
+        const token = jwt.sign({
+            id: empleadoGuardado._id,
+            role: foundRol.name // Asume que foundRol tiene una propiedad 'name' que es el nombre del rol
+        }, process.env.JWT_SECRET, {
             expiresIn: 86400 // 24 horas
         });
+
         console.log(empleadoGuardado);
         res.status(201).json({ token: token, message: 'Empleado creado con éxito' });
     } catch (error) {
@@ -36,8 +42,9 @@ exports.crearempleado = async (req, res) => {
 // Obtener todos los empleados
 exports.getAllEmploys = async (req, res) => {
     Employ.find()
+        .populate('rol', 'name') // Esto reemplaza el ID del rol con el documento del rol, mostrando solo el campo 'name'
         .then((data) => res.json(data))
-        .catch((error) => res.json({message: error}));
+        .catch((error) => res.json({ message: error }));
 };
 // Obtener un empleado
 exports.getEmployById = async (req, res) => {
@@ -49,25 +56,26 @@ exports.getEmployById = async (req, res) => {
 };
 // Actualizar un empleado
 exports.updateEmployById = async (req, res) => {
-    const {id} = req.params;
-    const {username, password, rol} = req.body;
-
+    const { id } = req.params;
+    const { username, password, rol } = req.body;
+  
     try {
-        const employ = await Employ.findById(id);
-
-        // Si se proporciona una nueva contraseña, hasheala
-        if (password) {
-            employ.password = await bcrypt.hash(password, saltRounds);
-        }
-        if (username) employ.username = username;
-        if (rol) employ.rol = rol;
-
-        await employ.save(); 
-        res.json({ message: 'Empleado actualizado con éxito' });
+      const updatedEmploy = await Employ.findOneAndUpdate(
+        { _id: id },
+        { username, password, rol },
+        { new: true, runValidators: true }
+      ).populate('rol');
+  
+      if (!updatedEmploy) {
+        return res.status(404).json({ message: 'Empleado no encontrado' });
+      }
+  
+      res.json({ message: 'Empleado actualizado con éxito', employ: updatedEmploy });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+      res.status(500).json({ message: error.message });
     }
 };
+
 // Eliminar un empleado
 exports.deleteEmployById = async (req, res) => {
     const {id} = req.params;
@@ -92,7 +100,7 @@ exports.login = async (req, res) => {
         }
 
         // Como todo es válido, genera el token
-        const token = jwt.sign({ id: busquedaEmpleado._id }, process.env.JWT_SECRET, {
+        const token = jwt.sign({ id: busquedaEmpleado._id,role: busquedaEmpleado.rol.name }, process.env.JWT_SECRET, {
             expiresIn: 86400 // 24 horas
         });
 

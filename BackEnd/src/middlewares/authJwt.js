@@ -1,3 +1,5 @@
+
+
 //Aqui vamos a verificar si se tienen tokens
 const jwt = require('jsonwebtoken');
 const Employ = require('../models/employs');
@@ -109,6 +111,43 @@ module.exports.isAdminTaller = async (req, res, next) => {
             next();
         } else {
             return res.status(403).json({ message: 'Acceso denegado. Requiere rol de Admin Taller' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al verificar el rol' });
+    }
+};
+
+module.exports.isAnalistaSiniestro = async (req, res, next) => {
+    try {
+        const employ = await Employ.findById(req.employId).populate('rol');
+        if (!employ) {
+            return res.status(404).json({message: 'Empleado no encontrado'});
+        }
+        if (employ.rol && employ.rol.name === "Analista Siniestro") {
+            next();
+        } else {
+            return res.status(403).json({message: 'Acceso denegado. Requiere rol de Analista Siniestro'});
+        }
+    }
+
+    catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error al verificar el rol' });
+}
+};
+module.exports.isAnalistaSiniestro = async (req, res, next) => {
+    try {
+        const employ = await Employ.findById(req.employId).populate('rol');
+        if (!employ) {
+            return res.status(404).json({ message: 'Empleado no encontrado' });
+        }
+
+        // Como employ.rol es ahora un único objeto y no un array, la comprobación es directa
+        if (employ.rol && employ.rol.name === "Analista Siniestro") {
+            next();
+        } else {
+            return res.status(403).json({ message: 'Acceso denegado. Requiere rol de Analista Siniestro' });
         }
     } catch (error) {
         console.error(error);

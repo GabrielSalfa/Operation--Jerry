@@ -7,7 +7,7 @@
     --blanco: #fff;
     --oscuro: #fff;
 }
-.BodyLiqui{
+body{
     background: var(--azul);
     font-family: 'Times New Roman', Times, serif;
     width: 80%;
@@ -129,17 +129,4 @@ h3
 {
     margin-top: 1%;
     font-size: 30px;
-}
-
-
-.main-layout {
-  & > div {
-    width: 100%;
-    iframe {
-      width: 100%;
-      min-height: 500px;
-      height: 100%;
-      max-height: 800px;
-    }
-  }
 }

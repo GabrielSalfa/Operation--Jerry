@@ -11,6 +11,7 @@ const accidentRoutes = require("./routes/accidents");
 const gruasRoutes = require("./routes/gruas");
 const presupRepRoutes = require("./routes/presupuestoRep");
 const reportsRoutes = require("./routes/report");
+const rolRoutes = require("./routes/rolRoutes");
 /* Ejecutamos express */
 const app = express();
 createRoles();
@@ -27,7 +28,7 @@ app.use('/api', accidentRoutes);
 app.use('/api', gruasRoutes);
 app.use('/api', presupRepRoutes);
 app.use('/api', reportsRoutes);
-
+app.use('/api', rolRoutes);
 /*Connection with mondongoDB */
 mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log("Connected to MongoDB Atlas"))

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './consultaAsistenciaGrua.css';
-import { mostrarContenido } from './consultaAsistenciaGruaBack';
 
 const ConsultaAsistenciaGrua = () => {
     const [showGlobalStats, setShowGlobalStats] = useState(false);
@@ -8,12 +7,12 @@ const ConsultaAsistenciaGrua = () => {
     const [data, setData] = useState(null);
 
     const handleConsultasStuff = (values) => {
-        alert(numeroSiniestro);
+        const token = localStorage.getItem('token');
         fetch(`http://localhost:9000/api/gruas/${numeroSiniestro}`, {
-
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'x-access-token': token
             }
         })
             .then(response => response.json())
@@ -21,9 +20,8 @@ const ConsultaAsistenciaGrua = () => {
                 setData(data);
             })
             .catch(error => {
-                alert("No se encontró el siniestro especificado.")
+                alert("No se encontró el siniestro especificado.");
             });
-
     }
     return (
         <div>
@@ -92,6 +90,7 @@ const ConsultaAsistenciaGrua = () => {
                     </tbody>
                 </table>
             }
+            <footer className='footerAG'></footer>
         </div>
     )
 }

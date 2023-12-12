@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD
 import './style.css';
 //import {jsPDF} from "jspdf"
 //import axios from "axios"
@@ -17,6 +18,9 @@ import './style.css';
 //         const [desc,setDesc] = useState("");
 //         const [deliver,setDeliver] = useState("");
 //         const [cost,setCost] = useState("");
+=======
+import './probando.css';
+>>>>>>> d37d33d259b0fc020e0a21f798b7ecd808761dd9
 
 //         try {
 

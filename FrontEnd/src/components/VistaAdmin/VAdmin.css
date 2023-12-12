@@ -1,28 +1,19 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-nav {
+.BarraDeNav {
     background-color: #333;
     overflow: hidden;
-    width: 100%; 
 }
 
-ul {
+.NavAdmin ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
 }
 
-li {
+.NavAdmin li {
     float: left;
 }
 
-li a {
+.NavAdmin li a {
     display: block;
     color: white;
     text-align: center;
@@ -30,6 +21,6 @@ li a {
     text-decoration: none;
 }
 
-li a:hover {
+.NavAdmin li a:hover {
     background-color: #111;
 }

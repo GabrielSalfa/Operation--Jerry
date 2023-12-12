@@ -26,7 +26,7 @@ const Slider = ({ images }) => {
                     key={image}
                     className={`slide ${index === currentImage ? 'active' : ''}`}
                 >
-                    <img src={image} alt={`Slide ${index}`} />
+                    <img className='imagenSlider' src={image} alt={`Slide ${index}`} />
                 </div>
             ))}
             <button className="slide-button next" onClick={next}>&raquo;</button>
