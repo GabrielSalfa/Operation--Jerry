@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Field, Formik } from 'formik';
 import { useNavigate, Link } from 'react-router-dom'; 
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { jwtDecode } from 'jwt-decode';
 import './Aute.css';
 
 const Aute = () => {
@@ -21,16 +22,41 @@ const Aute = () => {
         .then(response => response.json())
         .then(data => {
             if (data.token) {
-                alert(`Bienvenido administrador, ${values.username} :D`);
-                // Guardar token en el almacenamiento local o en el estado global
                 localStorage.setItem('token', data.token);
-                navigate('/VistaAdmin/crear-usuario');
+                
+                // Decodifica el token para obtener el rol del usuario
+                const decoded = jwtDecode(data.token);
+                // Redirige al usuario basado en su rol
+                switch(decoded.role) {
+                    case 'Call Center':
+                        navigate('/ruta-call-center');
+                        break;
+                    case 'Analista Siniestro':
+                        navigate('/ruta-analista-siniestro');
+                        break;
+                    case 'Liquidador':
+                        navigate('/ruta-liquidador');
+                        break;
+                    case 'Analista Negocio':
+                        navigate('/VistaAdmin/crear-usuario');
+                        break;
+                    case 'Chofer Grúa':
+                        navigate('/ruta-chofer-grua');
+                        break;
+                    case 'Admin Taller':
+                        navigate('/ruta-admin-taller');
+                        break;
+                    default:
+                        navigate('/'); // Redirigir a inicio o a una página de error si el rol no es reconocido
+                        break;
+                }
             } else {
                 alert('Inicio de sesión fallido.');
             }
         })
         .catch((error) => {
             console.error('Error:', error);
+            alert('Error de autenticación');
         });
     };
     

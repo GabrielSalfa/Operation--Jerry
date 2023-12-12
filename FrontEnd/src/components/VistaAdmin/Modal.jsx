@@ -1,8 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import './diseñoModal.css';
-
 const Modal = ({ empleado, cerrarModal, onSubmit, roles = [] }) => {
     // Definir el esquema de validación para el formulario
     const empleadoSchema = Yup.object().shape({
@@ -13,7 +11,7 @@ const Modal = ({ empleado, cerrarModal, onSubmit, roles = [] }) => {
     //Queda pendiente darle estilo al Modal
     return (
         <div className="modal">
-            <Formik
+            <Formik className='FormikModal'
                 initialValues={{
                     username: empleado.username || '',
                     password: '', // La contraseña inicialmente está vacía
@@ -39,17 +37,17 @@ const Modal = ({ empleado, cerrarModal, onSubmit, roles = [] }) => {
                     <Form autoComplete='off'>
                         <h2 className='TituloModal'>Actualizar Empleado</h2>
                         <div className='DivModal'>
-                            <Field name="username" type="text" placeholder="Nombre de Usuario" />
+                            <Field className='campoField' name="username" type="text" placeholder="Nombre de Usuario" />
                             {errors.username && touched.username && <div>{errors.username}</div>}
                         </div>
                         <div className='DivModal'>
-                            <Field name="password" type="password" placeholder="Nueva contraseña" />
+                            <Field className='campoField' name="password" type="password" placeholder="Nueva contraseña" />
                         </div>
                         <div className='DivModal'>
-                            <label>Rol:</label>
+                            <label className='LabelModal'>Rol:</label>
                             {roles.map((rol) => (
                                 <label key={rol._id}>
-                                    <Field type="radio" name="rol" value={rol._id} checked={rol._id === empleado.rol?._id} />
+                                    <Field className='campoField' type="radio" name="rol" value={rol._id} checked={rol._id === empleado.rol?._id} />
                                     {rol.name}
                                 </label>
                             ))}
