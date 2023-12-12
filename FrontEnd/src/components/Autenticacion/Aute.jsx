@@ -32,7 +32,7 @@ const Aute = () => {
                         navigate('/ruta-call-center');
                         break;
                     case 'Analista Siniestro':
-                        navigate('/ruta-analista-siniestro');
+                        navigate('/ConsultaAsistenciaGrua/consultaAsistenciaGrua');
                         break;
                     case 'Liquidador':
                         navigate('/Liquidador/liquidador');
