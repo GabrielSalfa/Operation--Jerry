@@ -1,49 +1,65 @@
 import React from "react";
 import './style.css';
+//import {jsPDF} from "jspdf"
+//import axios from "axios"
+//import { useContext, useState } from "react";
+ const liquidador = () =>
+ {
+//     const HandleSubmit = async (e) => {
+//         e.preventDefault();
+        
+//         const [accident,setAccident] = useState("");
+//         const [agency,setAgency] = useState("");
+//         const [tow,setTow] = useState();
+//         const [workshop,setWorkshop] = useState("");
+//         const [repairt,setRepairt] = useState("");
+//         const [time,setTime] = useState("");
+//         const [desc,setDesc] = useState("");
+//         const [deliver,setDeliver] = useState("");
+//         const [cost,setCost] = useState("");
 
-const liquidador = () =>
-{
-    const handleLiquidador = (values) => {
-        fetch('http://localhost:9000/api/accidents', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                accident: values.accident,
-                agency: values.agency,
-                tow: values.tow,
-                workshop: values.workshop,
-                reptype: values.reptype,
-                duration: values.duration,
-                desc: values.desc,
-                deliver: values.deliver,
-                cost: values.cost
-            })
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    };
+//         try {
+
+//             const response = await axios.post (
+//                 `${"http://localhost:3000/liquidador"}`,
+//                 {
+//                     accident: accident,
+//                     agency: agency,
+//                     tow: tow,
+//                     workshop: workshop,
+//                     repairt: repairt,
+//                     time: time,
+//                     desc: desc,
+//                     deliver: deliver,
+//                     cost: cost
+//                 }
+//             );
+//         }
+//         catch (error) {
+//             console.log(error)
+//         }
+//     };
+//     const generarPDF = () =>
+//     {
+//         const doc = new jsPDF();
+//         doc.text()
+//     }
     return(
-        <div className="BodyLiqu">
+        <div className="BodyLiqu" >
 
             <center><h1 id="title1">Liquidador: Ernesto Jorquera</h1></center>
             <center><div id="cont">
 
-                <label for="selectus">Siniestro:</label>
-                <select id="selectus">
+                <label for="accident">Siniestro:</label>
+                <select id="deliv" >
                     <option disabled selected>Seleccione el Siniestro</option>
                     <option value="E. Rigoberto 10/09">E. Rigoberto 10/09</option>
                     <option value="M. Fuenzalida 25/05">M. Fuenzalida 25/05</option>
                     <option value="P. Rodríguez 08/01">P. Rodríguez 08/01</option>
                     <option value="U. Saavedra 01/02">U. Saavedra 01/02</option>
                     <option value="J. José 30/12">J. José 30/12</option>
-                </select>
-                <button id="accsselect">
-                    Seleccionar Siniestro
-                </button>
 
+                </select>
             </div></center>
 
             <div id="sinadm">
@@ -53,7 +69,7 @@ const liquidador = () =>
 
                 <form><center>
                     <label for="agency">Agencia:</label>
-                    <select id="selectagency">
+                    <select id="agency">
                         <option disabled selected>Escoja una Agencia</option>
                         <option value="Reparaciones Rueda">Reparaciones Rueda</option>
                         <option value="Autofix">Autofix</option>
@@ -68,7 +84,7 @@ const liquidador = () =>
                     </select>
                     <br></br>
                     <br></br>
-                    <label for="cworkshop">Taller:</label>
+                    <label for="workshop">Taller:</label>
                     <select id="workshop" type="text" name="workshop">
                     <option disabled selected>Escoja un Taller</option>
                         <option value="El Taller de tus sueños">El Taller de tus sueños</option>
@@ -92,8 +108,8 @@ const liquidador = () =>
                         <input id="desc" type="text" name="desc"></input>
                     </center>
                     <br></br>
-                    <label for="day">Día de Entrega:</label>
-                    <input id="day" type="text" name="day"></input>
+                    <label for="deliver">Día de Entrega:</label>
+                    <input id="deliver" type="text" name="day"></input>
                     <br></br>
                     <br></br>
                     <label for="cost">Monto Total:</label>
@@ -113,6 +129,7 @@ const liquidador = () =>
                 </center></form>
             </div>
         </div>
-    )     
+        
+    )
 }
 export default liquidador;
