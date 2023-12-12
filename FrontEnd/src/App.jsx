@@ -22,7 +22,9 @@ function App() {
             <Route path="/Vistaadmin/*" element={<VAdmin />} />
           </Route>
           {/*LEEEME */}
-          <Route path="/consultaAsistenciagrua" element={<ConsultaAsistenciaGrua/>} />
+          <Route element={<ProtectedRoute roles={['Analista Siniestro']} />}>
+            <Route path="/consultaAsistenciagrua" element={<ConsultaAsistenciaGrua/>} />
+            </Route>
           <Route path="/IngresoSiniestro" element={<IngresoSin/>}/>
           <Route path="/consultarSiniestro" element={<ConsultarSiniestrosForm/>}/>
           <Route path="/Liquidador" element={<Liquidador/>}/>
